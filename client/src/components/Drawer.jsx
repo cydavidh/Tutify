@@ -15,60 +15,12 @@ import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
 import ApprovalIcon from "@mui/icons-material/Approval";
 import SchoolIcon from "@mui/icons-material/School";
 
-const drawerWidth = 240;
+import React from "react";
 
-export default function Drawer1() {
-  return (
-    <Drawer
-      sx={{
-        width: drawerWidth,
-        flexShrink: 0,
-        "& .MuiDrawer-paper": {
-          alignItems: "center",
-          width: drawerWidth,
-          boxSizing: "border-box",
-        },
-      }}
-      variant="permanent"
-      anchor="left"
-    >
-      <Toolbar />
+//find time to extract drawer from tutorpage
 
-      <img
-        src="logo.png"
-        alt="logo"
-        width="40%"
-        border-radius="50%"
-        padding-left="50px"
-        sx={{ mx: "auto", width: 200 }}
-      />
+const Drawer = () => {
+  return <div>Drawer</div>;
+};
 
-      <h1>Au Tutor</h1>
-
-      <Divider />
-      <List>
-        <Divider sx={{ my: 1 }} />
-        <ListItemButton onClick={() => setcomponent("teaching")}>
-          <ListItemIcon>
-            <SchoolIcon />
-          </ListItemIcon>
-          <ListItemText primary="Teaching" />
-        </ListItemButton>
-        <ListItemButton onClick={() => setcomponent("requested")}>
-          <ListItemIcon>
-            <ApprovalIcon />
-          </ListItemIcon>
-          <ListItemText primary="Requested" />
-        </ListItemButton>
-
-        <ListItemButton onClick={() => setcomponent("sessions")}>
-          <ListItemIcon>
-            <LibraryBooksIcon />
-          </ListItemIcon>
-          <ListItemText primary="Sessions" />
-        </ListItemButton>
-        <Divider sx={{ my: 1 }} />
-      </List>
-    </Drawer>
-  );
-}
+export default Drawer;

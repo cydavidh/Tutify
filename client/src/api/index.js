@@ -1,18 +1,33 @@
 import Axios from "axios";
 
-// const url = "https://localhost:5000/posts";
-// export const fetchPosts = () => axios.get(url);
-// export const createPost = (newPost) => axios.post(url, newPost);
-// export const likePost = (id) => axios.patch(`${url}/${id}/likePost`);
-// export const updatePost = (id, updatedPost) =>
-//   axios.patch(`${url}/${id}`, updatedPost);
-// export const deletePost = (id) => axios.delete(`${url}/${id}`);
+//tutor
+const tutorAPI = Axios.create({ baseURL: "http://localhost:1001/tutor" });
 
-const tutorUrl = "http://localhost:5001/tutorcourses";
+tutorAPI.interceptors.request.use((req) => {
+  if (localStorage.getItem("user")) {
+    req.headers.Authorization = `Bearer ${localStorage.getItem("token")}`;
+  }
+  return req;
+});
 
 export async function fetchTutorCourses() {
-  const response = await Axios.get(tutorUrl);
+  const response = await tutorAPI.get("/teaching");
   return response.data;
 }
+export const createCourse = (newCourse) => tutorAPI.post("/teaching", newCourse);
+export const logIn = (formData) => tutorAPI.post("/login", formData);
+export const signUp = (formData) => tutorAPI.post("/signup", formData);
 
-export const createCourse = (newCourse) => Axios.post(tutorUrl, newCourse);
+//tutee
+const tuteeAPI = Axios.create({ baseURL: "http://localhost:1001/tutee" });
+
+tuteeAPI.interceptors.request.use((req) => {
+  if (localStorage.getItem("user")) {
+    req.headers.Authorization = `Bearer ${localStorage.getItem("token")}`;
+  }
+  return req;
+});
+
+export const tuteeLogin = (formData) => tuteeAPI.post("/login", formData);
+export const tuteeSignup = (formData) => tuteeAPI.post("/signup", formData);
+export const enroll = (courseid) => tuteeAPI.patch(`/enroll/${courseid}`);

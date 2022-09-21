@@ -10,11 +10,14 @@ import { allCoursesList } from "./Form_Components/allCoursesList";
 import { createCourse } from "../../../api/index";
 
 function FormTeach() {
+  let user = JSON.parse(localStorage.getItem("user"));
   const [courseData, setCourseData] = React.useState({
     course: "",
     availability: "",
     price: "",
     type: "",
+    tutorname: user.result.name,
+    tutor: user.result._id,
   });
 
   const clear = () => {
@@ -24,6 +27,8 @@ function FormTeach() {
       availability: "",
       price: "",
       type: "",
+      tutorname: user.result.name,
+      tutor: user.result._id,
     });
   };
 
@@ -34,13 +39,7 @@ function FormTeach() {
   };
 
   return (
-    <Paper
-      elevation={3}
-      sx={{
-        padding: 5,
-        marginTop: 5,
-      }}
-    >
+    <Paper elevation={3} sx={{ padding: 5, marginTop: 5 }}>
       <form onSubmit={handleSubmit}>
         <Typography sx={{ marginBottom: 3, minWidth: 200 }} variant="h4">
           Teach a Course
@@ -61,13 +60,7 @@ function FormTeach() {
 
         <FormControl sx={{ m: 1, minWidth: 200 }}>
           <InputLabel>Type</InputLabel>
-          <Select
-            value={courseData.type}
-            onChange={(e) =>
-              setCourseData({ ...courseData, type: e.target.value })
-            }
-            label="Type"
-          >
+          <Select value={courseData.type} onChange={(e) => setCourseData({ ...courseData, type: e.target.value })} label="Type">
             <MenuItem value="Online">Online</MenuItem>
             <MenuItem value="Offline">Offline</MenuItem>
             <MenuItem value="Both">Both</MenuItem>
@@ -81,9 +74,7 @@ function FormTeach() {
           label="Price (Baht/Hour)"
           fullWidth
           value={courseData.price}
-          onChange={(e) =>
-            setCourseData({ ...courseData, price: e.target.value })
-          }
+          onChange={(e) => setCourseData({ ...courseData, price: e.target.value })}
         />
 
         <TextField
@@ -93,19 +84,10 @@ function FormTeach() {
           label="When are you available?"
           fullWidth
           value={courseData.availability}
-          onChange={(e) =>
-            setCourseData({ ...courseData, availability: e.target.value })
-          }
+          onChange={(e) => setCourseData({ ...courseData, availability: e.target.value })}
         />
 
-        <Button
-          sx={{ m: 1, minWidth: 200 }}
-          variant="contained"
-          color="error"
-          size="large"
-          type="submit"
-          fullWidth
-        >
+        <Button sx={{ m: 1, minWidth: 200 }} variant="contained" color="error" size="large" type="submit" fullWidth>
           Submit
         </Button>
       </form>

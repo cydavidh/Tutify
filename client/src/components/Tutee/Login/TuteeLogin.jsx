@@ -79,7 +79,7 @@ export default function TuteeLogin() {
         })
         .catch((error) => {
           if (error.response) {
-            // console.log(error.response.data); // => the response payload
+            console.log(error.response.data); // => the response payload
             alert(error.response.data.message);
           }
         });

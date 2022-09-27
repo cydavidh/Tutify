@@ -28,6 +28,11 @@ tuteeAPI.interceptors.request.use((req) => {
   return req;
 });
 
+export async function fetchRequestedCourses() {
+  const response = await tutorAPI.get("/requests");
+  return response.data;
+}
+export const createRequest = (newCourse) => tutorAPI.post("/requests", newCourse);
 export const tuteeLogin = (formData) => tuteeAPI.post("/login", formData);
 export const tuteeSignup = (formData) => tuteeAPI.post("/signup", formData);
 export const enroll = (courseid) => tuteeAPI.patch(`/enroll/${courseid}`);

@@ -1,22 +1,25 @@
 import React from "react";
-import { fetchTutorCourses } from "../../../api/index";
+import FormRequest from "../Form/FormRequest";
+import { Grid, Typography, Container } from "@mui/material";
+import RequestCourses from "../RequestCourses/RequestCourses";
 
 const Requests = () => {
-  let user = JSON.parse(localStorage.getItem("user"));
-  const [courses, setCourses] = React.useState([]);
-
-  fetchTutorCourses().then((result) => {
-    setCourses(result);
-  });
-
   return (
-    <>
-      {courses.map((singleCourse) => {
-        console.log(singleCourse?.tutees.includes(user.result._id));
-
-        singleCourse?.tutees.includes(user.result._id);
-      })}
-    </>
+    <div>
+      <Container maxWidth="xl">
+        <Grid container justify="space-between" alignItems="stretch" spacing={3}>
+          <Grid item xs={12} sm={4}>
+            <Typography sx={{ marginTop: 9, marginBottom: 3, minWidth: 200 }} variant="h4">
+              Requests
+            </Typography>
+            <FormRequest />
+          </Grid>
+          <Grid item xs={12} sm={8}>
+            <RequestCourses />
+          </Grid>
+        </Grid>
+      </Container>
+    </div>
   );
 };
 

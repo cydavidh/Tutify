@@ -23,10 +23,16 @@ const courseSchema = new mongoose.Schema({
     type: [String],
     default: [],
   },
+  tuteeRequestId: {
+    type: String,
+  },
+  tuteeRequestName: {
+    type: String,
+  },
 });
 
-const Course = mongoose.model("Course", courseSchema);
-export default Course;
+export const Course = mongoose.model("Course", courseSchema);
+export const RequestedCourse = mongoose.model("RequestedCourse", courseSchema);
 
 // username: {
 //   type: String,

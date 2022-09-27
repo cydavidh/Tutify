@@ -1,4 +1,4 @@
-import Course from "../models/course.js";
+import { RequestedCourse } from "../models/course.js";
 import TuteeModal from "../models/tutee.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
@@ -7,6 +7,28 @@ dotenv.config();
 import express from "express";
 import mongoose from "mongoose";
 const router = express.Router();
+
+export const getRequests = async (req, res) => {
+  try {
+    const requestedCourses = await RequestedCourse.find();
+    res.status(200).json(requestedCourses);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+
+export const createRequest = (req, res) => {
+  const body = req.body;
+
+  const newRequest = new RequestedCourse(body);
+
+  try {
+    newRequest.save();
+    res.status(201).json(newRequest);
+  } catch (error) {
+    res.status(409).json({ message: error.message });
+  }
+};
 
 export const login = async (req, res) => {
   const { email, password } = req.body;
@@ -80,73 +102,3 @@ export const enroll = async (req, res) => {
 
   res.status(200);
 };
-
-//get course id
-
-//get tutee id
-
-//js mastery example
-// const token = req.headers.authorization.split(" ")[1];
-// const isCustomAuth = token.length < 500;
-// let decodedData;
-// decodedData = jwt.verify(token, process.env.JWT_SECRET);
-// req.userId = decodedData?.id;
-
-//https://stackoverflow.com/questions/33451298/nodejs-retrieve-user-information-from-jwt-token
-// try {
-//   if (req.headers && req.headers.authorization) {
-//     var authorization = req.headers.authorization.split(" ")[1],
-//       decoded;
-//     console.log(authorization);
-//     try {
-//       decoded = jwt.verify(authorization, secret.secretToken);
-//     } catch (e) {
-//       return res.status(401).json({ message: "Something went wrong" });
-//     }
-//     var userId = decoded.id;
-//     // Fetch the user by id
-//     User.findOne({ _id: userId }).then(function (user) {
-//       // Do something with the user
-//       return res.status(200).json({ message: "Something went wrong" });
-//     });
-//   }
-// } catch (error) {
-//   res.status(500);
-// }
-
-// if (req.headers && req.headers.authorization) {
-//   var authorization = req.headers.authorization.split(" ")[1],
-//     decoded;
-//   console.log(authorization);
-//   try {
-//     decoded = jwt.verify(authorization, secret.secretToken);
-//   } catch (e) {
-//     return res.status(401).json({ message: "Something went wrong" });
-//   }
-//   var userId = decoded.id;
-//   // Fetch the user by id
-//   User.findOne({ _id: userId }).then(function (user) {
-//     // Do something with the user
-//     return res.status(200).json({ message: "Something went wrong" });
-//   });
-// }
-// return res.status(500);
-
-// if (!req.userId) {
-//   return res.json({ message: "Unauthenticated" });
-// }
-
-//   if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
-
-//   const post = await Course.findById(id);
-
-//   const index = post.likes.findIndex((id) => id === String(req.userId));
-
-//   if (index === -1) {
-//     post.likes.push(req.userId);
-//   } else {
-//     post.likes = post.likes.filter((id) => id !== String(req.userId));
-//   }
-//   const updatedPost = await Course.findByIdAndUpdate(id, post, { new: true });
-//   res.status(200).json(updatedPost);
-// };

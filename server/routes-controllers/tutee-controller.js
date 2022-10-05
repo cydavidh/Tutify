@@ -1,4 +1,4 @@
-import { RequestedCourse } from "../models/course.js";
+import { RequestedCourse, Course } from "../models/course.js";
 import TuteeModal from "../models/tutee.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";

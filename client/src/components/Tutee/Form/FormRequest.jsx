@@ -66,25 +66,9 @@ function FormRequest() {
           </Select>
         </FormControl>
 
-        <TextField
-          sx={{ m: 1, minWidth: 200 }}
-          name="price"
-          variant="outlined"
-          label="Price (Baht/Hour)"
-          fullWidth
-          value={courseData.price}
-          onChange={(e) => setCourseData({ ...courseData, price: e.target.value })}
-        />
+        <TextField sx={{ m: 1, minWidth: 200 }} name="price" variant="outlined" label="Price (Baht/Hour)" fullWidth value={courseData.price} onChange={(e) => setCourseData({ ...courseData, price: e.target.value })} />
 
-        <TextField
-          sx={{ m: 1, minWidth: 200 }}
-          name="availability"
-          variant="outlined"
-          label="When are you available?"
-          fullWidth
-          value={courseData.availability}
-          onChange={(e) => setCourseData({ ...courseData, availability: e.target.value })}
-        />
+        <TextField sx={{ m: 1, minWidth: 200 }} name="availability" variant="outlined" label="When do you prefer the session to be?" fullWidth value={courseData.availability} onChange={(e) => setCourseData({ ...courseData, availability: e.target.value })} />
 
         <TextField
           sx={{ m: 1, minWidth: 200 }}
@@ -94,7 +78,7 @@ function FormRequest() {
           variant="outlined"
           label="Comments (e.g. requirements for tutors)"
           fullWidth
-          value={courseData.availability}
+          // value={courseData.availability}
           // onChange={(e) => setCourseData({ ...courseData, availability: e.target.value })}
         />
 

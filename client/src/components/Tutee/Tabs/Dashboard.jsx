@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import EnrolledCourses from "../EnrolledCourses/EnrolledCourses";
-import { Container, AppBar, Typography, Grow, Grid } from "@mui/material";
+import React, { useState, useEffect } from 'react';
+import EnrolledCourses from '../EnrolledCourses/EnrolledCourses';
+import { Container, AppBar, Typography, Grow, Grid } from '@mui/material';
 
-function Dashboard() {
+function Dashboard(props) {
   return (
     <Container maxWidth="xl">
       {/* <SearchBar value={textFieldValue} onChange={(newValue) => setTextFieldValue(newValue)} onSearch={handleSearch} /> */}
@@ -11,7 +11,7 @@ function Dashboard() {
           <Typography sx={{ marginTop: 9, marginBottom: 3, minWidth: 200 }} variant="h4">
             Enrolled Courses
           </Typography>
-          <EnrolledCourses />
+          <EnrolledCourses chatChange={props.chatChange} />
         </Grid>
       </Grid>
     </Container>

@@ -1,15 +1,11 @@
-import React from "react";
-import { Typography } from "@mui/material";
+import React from 'react';
+import { Typography } from '@mui/material';
+import Chat from '../Chat/Chat';
+import Container from '@mui/material/Container';
+import { TextField, Button, Paper, Grid } from '@mui/material';
 
-export default function ChatTab() {
-  return (
-    <div>
-      {" "}
-      <div>
-        <Typography sx={{ marginTop: 9, marginBottom: 3, minWidth: 200 }} variant="h4">
-          Chat
-        </Typography>
-      </div>
-    </div>
-  );
-}
+const ChatTab = () => {
+  return <Chat />;
+};
+
+export default ChatTab;

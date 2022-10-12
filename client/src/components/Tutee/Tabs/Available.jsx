@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
-import AvailableCourses from "../AvailableCourses/AvailableCourses";
-import { Container, AppBar, Typography, Grow, Grid } from "@mui/material";
-import SearchBar from "../../SearchBar";
+import React, { useState, useEffect } from 'react';
+import AvailableCourses from '../AvailableCourses/AvailableCourses';
+import { Container, AppBar, Typography, Grow, Grid } from '@mui/material';
+import SearchBar from '../../SearchBar';
 // import SearchBar from "@mkyy/mui-search-bar";
+
 function Available() {
-  const [textFieldValue, setTextFieldValue] = useState("");
+  const [textFieldValue, setTextFieldValue] = useState('');
   const handleSearch = () => {};
   return (
     <Container maxWidth="xl">

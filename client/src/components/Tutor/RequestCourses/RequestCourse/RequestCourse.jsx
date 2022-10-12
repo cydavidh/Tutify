@@ -12,10 +12,12 @@ function RequestCourse({ course }) {
       </CardContent>
       <CardActions>
         <Button size="small" sx={{ textDecoration: 'line-through' }}>
-          Tutors
+          Chat
         </Button>
         {/* <Button size="small">Edit</Button> */}
-        <Button size="small">Delete</Button>
+        <Button size="small" sx={{ textDecoration: 'line-through' }}>
+          Tutee Detail
+        </Button>
       </CardActions>
     </Card>
   );

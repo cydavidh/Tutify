@@ -24,15 +24,12 @@ function RequestCourses() {
   return !courses.length ? (
     <CircularProgress />
   ) : (
-    <Grid container alignItems="stretch" spacing={3} marginTop={17}>
-      {courses.map(
-        (singleCourse) =>
-          user.result._id === singleCourse?.tuteeRequestId && (
-            <Grid key={singleCourse._id} item xs={12} sm={6} md={6}>
-              <RequestCourse course={singleCourse} />
-            </Grid>
-          )
-      )}
+    <Grid container alignItems="stretch" spacing={3}>
+      {courses.map((singleCourse) => (
+        <Grid key={singleCourse._id} item xs={12} sm={6} md={6}>
+          <RequestCourse course={singleCourse} />
+        </Grid>
+      ))}
     </Grid>
   );
 }

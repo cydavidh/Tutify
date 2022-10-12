@@ -17,9 +17,9 @@ function Course({ course }) {
         <Typography>{course.availability}</Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Students</Button>
-        <Button size="small">Edit</Button>
-        <Button size="small">Delete</Button>
+        <Button size="small" sx={{ textDecoration: 'line-through' }}>Students</Button>
+        <Button size="small" sx={{ textDecoration: 'line-through' }}>Delete</Button>
+        {/* <Button size="small">Delete</Button> */}
       </CardActions>
     </Card>
   );

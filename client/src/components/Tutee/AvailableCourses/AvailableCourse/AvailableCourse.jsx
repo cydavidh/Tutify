@@ -1,6 +1,6 @@
-import React from "react";
-import { Card, CardContent, Button, CardActions, Typography } from "@mui/material";
-import { enroll } from "../../../../api/index.js";
+import React from 'react';
+import { Card, CardContent, Button, CardActions, Typography } from '@mui/material';
+import { enroll } from '../../../../api/index.js';
 
 function AvailableCourse({ course }) {
   return (
@@ -19,10 +19,12 @@ function AvailableCourse({ course }) {
             enroll(course._id);
           }}
         >
-          Enroll
+          Bookmark
         </Button>
-        <Button size="small">Bookmark</Button>
-        <Button size="small">Details</Button>
+        {/* <Button size="small">Bookmark</Button> */}
+        <Button size="small" sx={{ textDecoration: 'line-through' }}>
+          Tutor Details
+        </Button>
       </CardActions>
     </Card>
   );

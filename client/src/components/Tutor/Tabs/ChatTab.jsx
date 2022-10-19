@@ -4,8 +4,8 @@ import Chat from '../Chat/Chat';
 import Container from '@mui/material/Container';
 import { TextField, Button, Paper, Grid } from '@mui/material';
 
-const ChatTab = () => {
-  return <Chat />;
+const ChatTab = (props) => {
+  return <Chat chatUsername={props.chatUsername} />;
 };
 
 export default ChatTab;

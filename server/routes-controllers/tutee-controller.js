@@ -102,3 +102,75 @@ export const enroll = async (req, res) => {
 
   res.status(200);
 };
+
+export const withdraw = async (req, res) => {
+  //get course id
+  const { courseid } = req.params;
+  //get tutee id
+  const token = req.headers.authorization.split(' ')[1];
+  let decodedData;
+  decodedData = jwt.verify(token, process.env.JWT_SECRET);
+  req.userId = decodedData?.id;
+  // console.log('userid', req.userId);
+  //add tutee id to course modal
+  if (!mongoose.Types.ObjectId.isValid(courseid)) return res.status(404).send(`No post with id: ${id}`);
+
+  //pull tutee id from course
+  console.log('tutee id', req.userId);
+  let tuteeid = req.userId;
+  console.log('course id', courseid);
+
+  // Course.updateOne({ _id: courseid }, { $pull: { tutees: [req.userId] } }, function (err, docs) {
+  //   if (err) {
+  //     console.log(err);
+  //   } else {
+  //     console.log('Updated Docs : ', docs);
+  //   }
+  // });
+
+  // TuteeModal.updateOne({ _id: req.userId }, { $pull: { enrolled: [courseid] } }, function (err, docs) {
+  //   if (err) {
+  //     console.log(err);
+  //   } else {
+  //     console.log('Updated Docs : ', docs);
+  //   }
+  // });
+
+  const respo = await Course.updateOne({ _id: courseid }, { $pull: { tutees: tuteeid } });
+  // console.log(respo.modifiedCount);
+  // respo.modifiedCount;
+  const temp = await Course.findOne({ _id: courseid });
+  console.log(temp);
+
+  // const course = await Course.findById(courseid);
+  // console.log(course); //now has list of students
+  // const tutee = await TuteeModal.findById(req.userId);
+  // console.log(tutee); //now has enrolled course
+
+  // // console.log(course);
+  // // course.find({ tutees: { $in: [req.userId] } }); //doesn't work, .find returns the whole document with the matching criteria
+  // course.tutees.push(req.userId);
+  // course.save();
+  // //add course id to tutee modal
+  // tutee.enrolled.push(courseid);
+  // tutee.save();
+
+  res.status(200);
+};
+
+export const deleteRequest = async (req, res) => {
+  const { courseid } = req.params;
+
+  await RequestedCourse.findByIdAndRemove(courseid);
+
+  res.json({ message: 'Post deleted successfully' });
+
+  // const { id: _id } = req.params;d
+
+  // if (!mongoose.Types.ObjectId.isValid(_id))
+  // 	return res.status(404).send("No post with that id");
+
+  // await PostMessage.findByIdAndRemove(_id);
+
+  // res.json({ message: "Post deleted successfully" });
+};

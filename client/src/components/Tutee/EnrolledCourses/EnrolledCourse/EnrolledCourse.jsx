@@ -1,12 +1,11 @@
 import React from 'react';
 import { Card, CardContent, Button, CardActions, Typography } from '@mui/material';
+import { withdraw } from '../../../../api/index.js';
 
 function EnrolledCourse(props) {
   function onClickHandler() {
-    props.chatChange(props.course.tutor);
-    {
-      console.log(props.course.tutor);
-    }
+    props.chatChange(props.course.tutorname);
+    console.log(props.course.tutor);
   }
 
   return (
@@ -24,7 +23,14 @@ function EnrolledCourse(props) {
         <Button size="small" onClick={onClickHandler}>
           Chat
         </Button>
-        <Button size="small">Remove</Button>
+        <Button
+          size="small"
+          onClick={() => {
+            withdraw(props.course._id);
+          }}
+        >
+          Remove
+        </Button>
       </CardActions>
     </Card>
   );

@@ -1,5 +1,5 @@
 import { red } from '@mui/material/colors';
-import { createTheme } from '@mui/material/styles';
+import { createTheme, createColor } from '@mui/material/styles';
 
 // A custom theme for this app
 const theme = createTheme({
@@ -12,6 +12,9 @@ const theme = createTheme({
     },
     error: {
       main: red.A400,
+    },
+    blue: {
+      main: '#3498DB',
     },
   },
 });

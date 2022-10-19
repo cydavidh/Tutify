@@ -9,7 +9,7 @@ function Dashboard(props) {
       <Grid container justify="space-between" alignItems="stretch" spacing={3}>
         <Grid item xs={12} sm={8}>
           <Typography sx={{ marginTop: 9, marginBottom: 3, minWidth: 200 }} variant="h4">
-            Enrolled Courses
+            Bookmarked Courses
           </Typography>
           <EnrolledCourses chatChange={props.chatChange} />
         </Grid>

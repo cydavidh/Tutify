@@ -22,9 +22,8 @@ function AvailableCourse({ course }) {
           Bookmark
         </Button>
         {/* <Button size="small">Bookmark</Button> */}
-        <Button size="small" sx={{ textDecoration: 'line-through' }}>
-          Tutor Details
-        </Button>
+        {/* <Button size="small" sx={{ textDecoration: 'line-through' }}> */}
+        {/* <Button size="small">Tutor Details</Button> */}
       </CardActions>
     </Card>
   );

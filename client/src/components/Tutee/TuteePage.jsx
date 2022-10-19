@@ -59,7 +59,9 @@ export default function TuteePage() {
 
         <img src={logo} alt="logo" width="40%" border-radius="50%" padding-left="50px" sx={{ mx: 'auto', width: 200 }} />
 
-        <h1>Au Tutor</h1>
+        <Typography sx={{ marginTop: 3 }} component="h1" variant="h4" color="#3498DB">
+          Au Tutee
+        </Typography>
 
         <Divider />
         <List>

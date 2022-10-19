@@ -1,11 +1,11 @@
-import React from "react";
-import Course from "./Course/Course";
-import { fetchTutorCourses } from "../../../api/index";
-import { Grid, Typography, CircularProgress } from "@mui/material";
-import Axios from "axios";
+import React from 'react';
+import Course from './Course/Course';
+import { fetchTutorCourses } from '../../../api/index';
+import { Grid, Typography, CircularProgress } from '@mui/material';
+import Axios from 'axios';
 
-function Courses() {
-  let user = JSON.parse(localStorage.getItem("user"));
+function Courses(props) {
+  let user = JSON.parse(localStorage.getItem('user'));
   const [courses, setCourses] = React.useState([]);
 
   fetchTutorCourses().then((result) => {
@@ -21,7 +21,7 @@ function Courses() {
         (singleCourse) =>
           user.result._id === singleCourse?.tutor && (
             <Grid key={singleCourse._id} item xs={12} sm={6} md={6}>
-              <Course course={singleCourse} />
+              <Course viewChange={props.viewChange} course={singleCourse} />
             </Grid>
           )
       )}

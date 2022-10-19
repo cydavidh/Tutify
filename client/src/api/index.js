@@ -14,9 +14,14 @@ export async function fetchTutorCourses() {
   const response = await tutorAPI.get('/teaching');
   return response.data;
 }
+export async function fetchTutees() {
+  const response = await tutorAPI.get('/tutees');
+  return response.data;
+}
 export const createCourse = (newCourse) => tutorAPI.post('/teaching', newCourse);
 export const logIn = (formData) => tutorAPI.post('/login', formData);
 export const signUp = (formData) => tutorAPI.post('/signup', formData);
+export const deleteCourse = (courseid) => tutorAPI.delete(`/delete/${courseid}`);
 
 //tutee
 const tuteeAPI = Axios.create({ baseURL: 'http://localhost:1001/tutee' });
@@ -36,3 +41,5 @@ export const createRequest = (newCourse) => tuteeAPI.post('/requests', newCourse
 export const tuteeLogin = (formData) => tuteeAPI.post('/login', formData);
 export const tuteeSignup = (formData) => tuteeAPI.post('/signup', formData);
 export const enroll = (courseid) => tuteeAPI.patch(`/enroll/${courseid}`);
+export const withdraw = (courseid) => tuteeAPI.patch(`/withdraw/${courseid}`);
+export const deleteRequest = (courseid) => tuteeAPI.delete(`/delete/${courseid}`);

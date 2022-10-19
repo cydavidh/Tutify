@@ -1,31 +1,31 @@
-import { TextField, Button, Paper, Typography } from "@mui/material";
-import React from "react";
-import ComboBox from "./Form_Components/allCoursesList";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
-import Autocomplete from "@mui/material/Autocomplete";
-import { allCoursesList } from "./Form_Components/allCoursesList";
-import { createRequest } from "../../../api/index";
+import { TextField, Button, Paper, Typography } from '@mui/material';
+import React from 'react';
+import ComboBox from './Form_Components/allCoursesList';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import Autocomplete from '@mui/material/Autocomplete';
+import { allCoursesList } from './Form_Components/allCoursesList';
+import { createRequest } from '../../../api/index';
 
 function FormRequest() {
-  let user = JSON.parse(localStorage.getItem("user"));
+  let user = JSON.parse(localStorage.getItem('user'));
   const [courseData, setCourseData] = React.useState({
-    course: "",
-    availability: "",
-    price: "",
-    type: "",
+    course: '',
+    availability: '',
+    price: '',
+    type: '',
     tuteeRequestName: user.result.name,
     tuteeRequestId: user.result._id,
   });
 
   const clear = () => {
     setCourseData({
-      course: "",
-      availability: "",
-      price: "",
-      type: "",
+      course: '',
+      availability: '',
+      price: '',
+      type: '',
       tuteeRequestName: user.result.name,
       tuteeRequestId: user.result._id,
     });
@@ -68,8 +68,18 @@ function FormRequest() {
 
         <TextField sx={{ m: 1, minWidth: 200 }} name="price" variant="outlined" label="Price (Baht/Hour)" fullWidth value={courseData.price} onChange={(e) => setCourseData({ ...courseData, price: e.target.value })} />
 
-        <TextField sx={{ m: 1, minWidth: 200 }} name="availability" variant="outlined" label="When do you prefer the session to be?" fullWidth value={courseData.availability} onChange={(e) => setCourseData({ ...courseData, availability: e.target.value })} />
-
+        <TextField
+          sx={{ m: 1, minWidth: 200 }}
+          name="availability"
+          variant="outlined"
+          multiline
+          rows={3}
+          label="Comments (e.g. requirements for tutors)"
+          fullWidth
+          value={courseData.availability}
+          onChange={(e) => setCourseData({ ...courseData, availability: e.target.value })}
+        />
+        {/* 
         <TextField
           sx={{ m: 1, minWidth: 200 }}
           multiline
@@ -80,9 +90,9 @@ function FormRequest() {
           fullWidth
           // value={courseData.availability}
           // onChange={(e) => setCourseData({ ...courseData, availability: e.target.value })}
-        />
+        /> */}
 
-        <Button sx={{ m: 1, minWidth: 200 }} variant="contained" color="error" size="large" type="submit" fullWidth>
+        <Button sx={{ m: 1, minWidth: 200 }} variant="contained" color="blue" size="large" type="submit" fullWidth>
           Submit
         </Button>
       </form>

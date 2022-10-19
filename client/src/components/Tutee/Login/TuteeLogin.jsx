@@ -1,32 +1,33 @@
-import React, { useState } from "react";
-import { Button, CssBaseline, TextField, FormControlLabel, Checkbox, Link, Grid, Box, Typography, Container, Stack, Switch } from "@mui/material";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import logo from "../../../assets/logo.png";
-import { useNavigate } from "react-router-dom";
-import { tuteeLogin, tuteeSignup } from "../../../api/index";
+import React, { useState } from 'react';
+import { Button, CssBaseline, TextField, FormControlLabel, Checkbox, Link, Grid, Box, Typography, Container, Stack, Switch } from '@mui/material';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import logo from '../../../assets/logo.png';
+import { useNavigate } from 'react-router-dom';
+import { tuteeLogin, tuteeSignup } from '../../../api/index';
+import axios from 'axios';
 
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {"Copyright © "}
+      {'Copyright © '}
       <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{" "}
+        Au Tutify
+      </Link>{' '}
       {new Date().getFullYear()}
-      {"."}
+      {'.'}
     </Typography>
   );
 }
 
 const theme = createTheme();
-const initialState = { firstName: "", lastName: "", email: "", password: "", confirmPassword: "" };
+const initialState = { firstName: '', lastName: '', email: '', password: '', confirmPassword: '' };
 
 export default function TuteeLogin() {
   //switch role
   const navigate = useNavigate();
   const [checked, setChecked] = React.useState(true);
   const switchUserType = (event) => {
-    navigate("/tutor/login");
+    navigate('/tutor/login');
   };
 
   //switch login signup
@@ -50,16 +51,29 @@ export default function TuteeLogin() {
     if (isSignup) {
       tuteeSignup(form)
         .then((response) => {
-          localStorage.setItem("token", response.data.token);
-          localStorage.setItem("user", JSON.stringify(response.data));
+          localStorage.setItem('token', response.data.token);
+          localStorage.setItem('user', JSON.stringify(response.data));
           //if you want ot get name email password or id or token somewhere.
           //just do const user = localStorage.getItem("user");
           //user.result.token, user.result.name...etc
 
-          localStorage.setItem("role", "tutee");
+          localStorage.setItem('role', 'tutee');
           // console.log(localStorage.getItem("user"));
           // console.log(localStorage.getItem("token"));
-          navigate("/tutee/dashboard");
+          let user = JSON.parse(localStorage.getItem('user'));
+
+          axios
+            .post(
+              'https://api.chatengine.io/users/',
+              { username: user.result.name, secret: user.result.password }, // Body object
+              {
+                headers: {
+                  'PRIVATE-KEY': 'cba1b633-91bd-4f6c-b6af-78e3d0fc2ff2',
+                },
+              } // Headers object
+            )
+            .then((r) => console.log(r));
+          navigate('/tutee/dashboard');
         })
         .catch((error) => {
           if (error.response) {
@@ -70,12 +84,12 @@ export default function TuteeLogin() {
     } else {
       tuteeLogin(form)
         .then(function (response) {
-          localStorage.setItem("token", response.data.token);
-          localStorage.setItem("user", JSON.stringify(response.data));
+          localStorage.setItem('token', response.data.token);
+          localStorage.setItem('user', JSON.stringify(response.data));
           // console.log(localStorage.getItem("user"));
           // alert(localStorage.getItem("user"));
-          localStorage.setItem("role", "tutee");
-          navigate("/tutee/dashboard");
+          localStorage.setItem('role', 'tutee');
+          navigate('/tutee/dashboard');
         })
         .catch((error) => {
           if (error.response) {
@@ -90,10 +104,10 @@ export default function TuteeLogin() {
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
-        <Box sx={{ marginTop: 8, display: "flex", flexDirection: "column", alignItems: "center" }}>
+        <Box sx={{ marginTop: 8, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <img src={logo} alt="Logo" width="25%" border-radius="50%" />
-          <Typography component="h1" variant="h3" color="red">
-            Tutify
+          <Typography component="h1" variant="h3" color="#3498DB">
+            Au Tutify
           </Typography>
           <Stack direction="row" spacing={1} alignItems="center">
             <Typography>Tutor</Typography>
@@ -128,7 +142,7 @@ export default function TuteeLogin() {
             <TextField margin="normal" required fullWidth name="password" label="Password" type="password" id="password" autoComplete="current-password" /> */}
             <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me" />
             <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
-              {isSignup ? "Sign Up" : "Sign In"}
+              {isSignup ? 'Sign Up' : 'Sign In'}
             </Button>
           </Box>
           <Grid container justifyContent="flex-end">
@@ -139,7 +153,7 @@ export default function TuteeLogin() {
               </Grid> */}
             <Grid item>
               <Link href="#" onClick={switchMode} variant="body2">
-                {isSignup ? "Already have an account? Sign in" : "Don't have an account? Sign Up"}
+                {isSignup ? 'Already have an account? Sign in' : "Don't have an account? Sign Up"}
               </Link>
             </Grid>
           </Grid>

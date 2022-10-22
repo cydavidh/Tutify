@@ -4,13 +4,14 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import logo from '../../../assets/logo.png';
 import { useNavigate } from 'react-router-dom';
 import { logIn, signUp } from '../../../api/index';
+import axios from 'axios';
 
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
       <Link color="inherit" href="https://mui.com/">
-        Your Website
+        Au Tutify
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -21,17 +22,17 @@ function Copyright(props) {
 const theme = createTheme();
 const initialState = { firstName: '', lastName: '', email: '', password: '', confirmPassword: '' };
 
-export default function TuteeLogin() {
-  //switch user type
+export default function TutorLogin() {
+  //switch role
   const navigate = useNavigate();
   const [checked, setChecked] = React.useState(false);
-  const switchUserType = () => {
+  const switchUserType = (event) => {
     navigate('/tutee/login');
   };
 
   //switch login signup
   const [isSignup, setIsSignup] = React.useState(false);
-  const switchLoginSignup = () => {
+  const switchMode = () => {
     setForm(initialState);
     setIsSignup((prevIsSignup) => !prevIsSignup);
     // setShowPassword(false);
@@ -52,7 +53,12 @@ export default function TuteeLogin() {
         .then((response) => {
           localStorage.setItem('token', response.data.token);
           localStorage.setItem('user', JSON.stringify(response.data));
+          //if you want ot get name email password or id or token somewhere.
+          //just do const user = localStorage.getItem("user");
+          //user.result.token, user.result.name...etc
+
           localStorage.setItem('role', 'tutor');
+          // console.log(localStorage.getItem("user"));
           // console.log(localStorage.getItem("token"));
           let user = JSON.parse(localStorage.getItem('user'));
 
@@ -71,21 +77,23 @@ export default function TuteeLogin() {
         })
         .catch((error) => {
           if (error.response) {
-            console.log(error.response.data); // => the response payload
+            // console.log(error.response.data); // => the response payload
             alert(error.response.data.message);
           }
         });
     } else {
-      logIn(form)
+      tutorLogin(form)
         .then(function (response) {
           localStorage.setItem('token', response.data.token);
           localStorage.setItem('user', JSON.stringify(response.data));
+          // console.log(localStorage.getItem("user"));
+          // alert(localStorage.getItem("user"));
           localStorage.setItem('role', 'tutor');
           navigate('/tutor/dashboard');
         })
         .catch((error) => {
           if (error.response) {
-            console.log(error.response.data); // => the response payload
+            // console.log(error.response.data); // => the response payload
             alert(error.response.data.message);
           }
         });
@@ -98,14 +106,9 @@ export default function TuteeLogin() {
         <CssBaseline />
         <Box sx={{ marginTop: 8, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <img src={logo} alt="Logo" width="25%" border-radius="50%" />
-
           <Typography component="h1" variant="h3" color="#3498DB">
             Au Tutify
           </Typography>
-
-          {/* <Typography component="h1" variant="h4">
-            Sign in
-          </Typography> */}
           <Stack direction="row" spacing={1} alignItems="center">
             <Typography>Tutor</Typography>
             <Switch checked={checked} onChange={switchUserType} />
@@ -143,8 +146,13 @@ export default function TuteeLogin() {
             </Button>
           </Box>
           <Grid container justifyContent="flex-end">
+            {/* <Grid item xs>
+                <Link href="#" variant="body2">
+                  Forgot password?
+                </Link>
+              </Grid> */}
             <Grid item>
-              <Link href="#" onClick={switchLoginSignup} variant="body2">
+              <Link href="#" onClick={switchMode} variant="body2">
                 {isSignup ? 'Already have an account? Sign in' : "Don't have an account? Sign Up"}
               </Link>
             </Grid>

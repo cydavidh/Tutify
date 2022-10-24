@@ -3,8 +3,8 @@ import { Box, Button, Paper, Container, Grid, Typography, CircularProgress } fro
 
 const Student = (props) => {
   function onClickHandler() {
-    props.chatChange(props.tutee.name);
-    // console.log(props.course.tutor);
+    props.redirectToChat(props.tutee.name);
+    // props.chatChange(props.tutee.name);
   }
 
   return (

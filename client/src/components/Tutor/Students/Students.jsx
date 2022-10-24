@@ -1,7 +1,8 @@
 import React from 'react';
-import { Paper, Container, Grid, Typography, CircularProgress } from '@mui/material';
+import { Paper, Container, Grid, Typography, Button, CircularProgress } from '@mui/material';
 import { fetchTutees } from '../../../api/index';
 import Student from './Student/Student';
+
 const Students = (props) => {
   const [tutees, setTutees] = React.useState([]);
 
@@ -17,24 +18,30 @@ const Students = (props) => {
       }
     });
 
+  // console.log(props.courseId.tutees);
+  // console.log(props.courseId.tutees.includes('634634aa68907eb5ba09633f'));
+
   return (
     <Container maxWidth="xl">
       {/* <SearchBar value={textFieldValue} onChange={(newValue) => setTextFieldValue(newValue)} onSearch={handleSearch} /> */}
       <Grid container justify="space-between" alignItems="stretch" spacing={3}>
         <Grid item xs={12} sm={8}>
-          <Typography sx={{ marginTop: 9, marginBottom: 3, minWidth: 200 }} variant="h4">
+          <Button onClick={props.viewChange}>Back</Button>
+          <Typography sx={{ marginTop: 4, marginBottom: 3, minWidth: 200 }} variant="h4">
             Students
           </Typography>
-
           {!tutees.length ? (
             <CircularProgress />
           ) : (
             <Grid container alignItems="stretch" spacing={3}>
-              {tutees.map((oneTutee) => (
-                <Grid key={oneTutee._id} item>
-                  <Student chatChange={props.chatChange} tutee={oneTutee} />
-                </Grid>
-              ))}
+              {tutees.map(
+                (oneTutee) =>
+                  props.courseId.tutees.includes(oneTutee._id) && (
+                    <Grid key={oneTutee._id} item>
+                      <Student redirectToChat={props.redirectToChat} chatChange={props.chatChange} tutee={oneTutee} />
+                    </Grid>
+                  )
+              )}
             </Grid>
           )}
         </Grid>
@@ -44,6 +51,8 @@ const Students = (props) => {
 };
 
 export default Students;
+
+//props.courseId.tutees.includes(oneTutee._id)
 
 // import React from 'react';
 // import { Container, AppBar, Typography, Grow, Grid, Paper } from '@mui/material';

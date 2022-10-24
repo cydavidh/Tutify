@@ -14,7 +14,13 @@ function Course(props) {
       <CardActions>
         {/* <Button size="small" sx={{ textDecoration: 'line-through' }}>Students</Button>
         <Button size="small" sx={{ textDecoration: 'line-through' }}>Delete</Button> */}
-        <Button size="small" onClick={props.viewChange}>
+        <Button
+          size="small"
+          onClick={() => {
+            props.studentFunction(props.course);
+            // console.log(props.course);
+          }}
+        >
           Students
         </Button>
         <Button

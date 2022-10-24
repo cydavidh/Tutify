@@ -31,28 +31,37 @@ export default function TutorPage() {
   let user = JSON.parse(localStorage.getItem('user'));
   // console.log(user.result.name);
 
-  //students
-  // const [view, setView] = React.useState(false);
+  //students page
+  const [courseId, setCourseId] = React.useState({});
 
-  // function viewChange() {
-  //   console.log('hello');
-  //   if (view === true) {
-  //     setView(false);
-  //   } else if (view === false) {
-  //     setView(true);
-  //   }
-  // }
+  const [viewCourses, setView] = React.useState(true);
 
-  // function onClickHandler() {
-  //   setcomponent('teaching');
-  //   setView(viewChange);
-  // }
+  function studentFunction(id) {
+    setView(false);
+    setCourseId(id);
+  }
 
+  function viewChange() {
+    setView(true);
+  }
+
+  function setAndView() {
+    setcomponent('teaching');
+    setView(true);
+  }
+
+  //chat change
+  //1 create chat
   //chat
   const [username, setUsername] = useState('');
 
-  function chatChange(id) {
-    setUsername(id);
+  // function chatChange(id) {
+  //   setUsername(id);
+  // }
+  //2 redirect chat
+  function redirectToChat(name) {
+    setcomponent('chat');
+    setUsername(name);
   }
 
   return (
@@ -83,7 +92,7 @@ export default function TutorPage() {
         <Divider />
         <List>
           <Divider sx={{ my: 1 }} />
-          <ListItemButton onClick={() => setcomponent('teaching')}>
+          <ListItemButton onClick={setAndView}>
             <ListItemIcon>
               <SchoolIcon />
             </ListItemIcon>
@@ -96,12 +105,12 @@ export default function TutorPage() {
             <ListItemText primary="Requested" />
           </ListItemButton>
 
-          <ListItemButton onClick={() => setcomponent('students')}>
+          {/* <ListItemButton onClick={() => setcomponent('students')}>
             <ListItemIcon>
               <LibraryBooksIcon />
             </ListItemIcon>
             <ListItemText primary="Students" />
-          </ListItemButton>
+          </ListItemButton> */}
 
           <ListItemButton onClick={() => setcomponent('chat')}>
             <ListItemIcon>
@@ -123,8 +132,17 @@ export default function TutorPage() {
 
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         {/* <DrawerHeader /> */}
-        {component == '' || component == 'teaching' ? <Teaching chatChange={chatChange} /> : component == 'requested' ? <Requested /> : component == 'students' ? <StudentsTab chatChange={chatChange} /> : <ChatTab chatUsername={username} />}
+        {component == '' || component == 'teaching' ? (
+          <Teaching redirectToChat={redirectToChat} courseId={courseId} viewCourses={viewCourses} studentFunction={studentFunction} viewChange={viewChange} />
+        ) : component == 'requested' ? (
+          <Requested />
+        ) : component == 'students' ? (
+          <StudentsTab />
+        ) : (
+          <ChatTab chatUsername={username} />
+        )}
       </Box>
     </Box>
   );
 }
+//<Teaching chatChange={chatChange} />

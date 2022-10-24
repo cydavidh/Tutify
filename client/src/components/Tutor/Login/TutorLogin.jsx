@@ -82,7 +82,7 @@ export default function TutorLogin() {
           }
         });
     } else {
-      tutorLogin(form)
+      logIn(form)
         .then(function (response) {
           localStorage.setItem('token', response.data.token);
           localStorage.setItem('user', JSON.stringify(response.data));

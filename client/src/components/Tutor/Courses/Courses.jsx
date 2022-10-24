@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Course from './Course/Course';
 import { fetchTutorCourses } from '../../../api/index';
 import { Grid, Typography, CircularProgress } from '@mui/material';
@@ -13,6 +13,8 @@ function Courses(props) {
     // console.log("courses", courses);
   });
 
+  //need to add useEffect clean up to abort the axios fetch
+
   return !courses.length ? (
     <CircularProgress />
   ) : (
@@ -21,7 +23,7 @@ function Courses(props) {
         (singleCourse) =>
           user.result._id === singleCourse?.tutor && (
             <Grid key={singleCourse._id} item xs={12} sm={6} md={6}>
-              <Course viewChange={props.viewChange} course={singleCourse} />
+              <Course studentFunction={props.studentFunction} course={singleCourse} />
             </Grid>
           )
       )}

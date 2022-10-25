@@ -1,11 +1,36 @@
 import React from 'react';
 import { Card, CardContent, Button, CardActions, Typography } from '@mui/material';
 import { withdraw } from '../../../../api/index.js';
+import emailjs from '@emailjs/browser';
 
 function EnrolledCourse(props) {
+  emailjs.init('hRz_fkfNSAGvLLvGM');
+  let user = JSON.parse(localStorage.getItem('user'));
+  var storedNames = JSON.parse(localStorage.getItem('names'));
   function onClickHandler() {
     props.chatChange(props.course.tutorname);
-    console.log(props.course.tutor);
+    // console.log(props.course.tutor);
+
+    var templateParams = {
+      tutor_name: props.course.tutorname,
+      tutee_name: user.result.name,
+      tutor_email: props.course.tutoremail,
+    };
+
+    // console.log(templateParams);
+    if (!storedNames.includes(props.course.tutoremail)) {
+      emailjs.send('service_t2vs5kr', 'contact_form', templateParams).then(
+        function (response) {
+          console.log('SUCCESS!', response.status, response.text);
+        },
+        function (error) {
+          console.log('FAILED...', error);
+        }
+      );
+    }
+    storedNames.push(props.course.tutoremail);
+    localStorage.setItem('names', JSON.stringify(storedNames));
+    // console.log(storedNames);
   }
 
   return (

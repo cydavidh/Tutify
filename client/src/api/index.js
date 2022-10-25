@@ -1,8 +1,8 @@
 import Axios from 'axios';
 
 //tutor
-const tutorAPI = Axios.create({ baseURL: 'https://tutify-2.herokuapp.com/tutor' });
-// const tutorAPI = Axios.create({ baseURL: 'http://localhost:1001/tutor' });
+// const tutorAPI = Axios.create({ baseURL: 'https://tutify-2.herokuapp.com/tutor' });
+const tutorAPI = Axios.create({ baseURL: 'http://localhost:1001/tutor' });
 
 tutorAPI.interceptors.request.use((req) => {
   if (localStorage.getItem('user')) {
@@ -25,8 +25,8 @@ export const signUp = (formData) => tutorAPI.post('/signup', formData);
 export const deleteCourse = (courseid) => tutorAPI.delete(`/delete/${courseid}`);
 
 //tutee
-const tuteeAPI = Axios.create({ baseURL: 'https://tutify-2.herokuapp.com/tutee' });
-// const tuteeAPI = Axios.create({ baseURL: 'http://localhost:1001/tutee' });
+// const tuteeAPI = Axios.create({ baseURL: 'https://tutify-2.herokuapp.com/tutee' });
+const tuteeAPI = Axios.create({ baseURL: 'http://localhost:1001/tutee' });
 
 tuteeAPI.interceptors.request.use((req) => {
   if (localStorage.getItem('user')) {

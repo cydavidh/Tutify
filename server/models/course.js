@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const courseSchema = new mongoose.Schema({
   course: {
@@ -19,6 +19,9 @@ const courseSchema = new mongoose.Schema({
   tutorname: {
     type: String,
   },
+  tutoremail: {
+    type: String,
+  },
   tutees: {
     type: [String],
     default: [],
@@ -31,8 +34,8 @@ const courseSchema = new mongoose.Schema({
   },
 });
 
-export const Course = mongoose.model("Course", courseSchema);
-export const RequestedCourse = mongoose.model("RequestedCourse", courseSchema);
+export const Course = mongoose.model('Course', courseSchema);
+export const RequestedCourse = mongoose.model('RequestedCourse', courseSchema);
 
 // username: {
 //   type: String,

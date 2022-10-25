@@ -56,7 +56,8 @@ export default function TuteeLogin() {
           //if you want ot get name email password or id or token somewhere.
           //just do const user = localStorage.getItem("user");
           //user.result.token, user.result.name...etc
-
+          var names = [];
+          localStorage.setItem('names', JSON.stringify(names));
           localStorage.setItem('role', 'tutee');
           // console.log(localStorage.getItem("user"));
           // console.log(localStorage.getItem("token"));
@@ -87,6 +88,8 @@ export default function TuteeLogin() {
           localStorage.setItem('token', response.data.token);
           localStorage.setItem('user', JSON.stringify(response.data));
           // console.log(localStorage.getItem("user"));
+          var names = [];
+          localStorage.setItem('names', JSON.stringify(names));
           // alert(localStorage.getItem("user"));
           localStorage.setItem('role', 'tutee');
           navigate('/tutee/dashboard');

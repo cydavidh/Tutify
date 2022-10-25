@@ -18,6 +18,7 @@ function FormTeach() {
     type: '',
     tutorname: user.result.name,
     tutor: user.result._id,
+    tutoremail: user.result.email,
   });
 
   const clear = () => {
@@ -29,6 +30,7 @@ function FormTeach() {
       type: '',
       tutorname: user.result.name,
       tutor: user.result._id,
+      tutoremail: user.result.email,
     });
   };
 

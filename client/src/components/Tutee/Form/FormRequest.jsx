@@ -9,7 +9,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 import { allCoursesList } from './Form_Components/allCoursesList';
 import { createRequest } from '../../../api/index';
 
-function FormRequest() {
+function FormRequest(props) {
   let user = JSON.parse(localStorage.getItem('user'));
   const [courseData, setCourseData] = React.useState({
     course: '',
@@ -34,6 +34,7 @@ function FormRequest() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     createRequest(courseData);
+    props.setForceRender((prev) => prev + 1);
     clear();
   };
 

@@ -47,7 +47,7 @@ function FormTeach(props) {
       clear();
     }
     console.log('submit');
-    props.setForceRender(props.forceRender + 1);
+    props.setForceRender((prev) => prev + 1);
   };
 
   return (

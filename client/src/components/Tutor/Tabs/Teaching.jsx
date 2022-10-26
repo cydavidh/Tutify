@@ -33,7 +33,7 @@ function Teaching(props) {
               {/* <Courses setCurrentId={setCurrentId} /> */}
             </Grid>
             <Grid item xs={12} sm={4}>
-              <FormTeach forceRender={forceRender} setForceRender={setForceRender} />
+              <FormTeach setForceRender={setForceRender} />
               {/* <FormTeach currentId={currentId} setCurrentId={setCurrentId} /> */}
             </Grid>
           </Grid>

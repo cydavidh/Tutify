@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Paper, Container, Grid, Typography, Button, CircularProgress } from '@mui/material';
 import { fetchTutees } from '../../../api/index';
 import Student from './Student/Student';
@@ -6,20 +6,25 @@ import Student from './Student/Student';
 const Students = (props) => {
   const [tutees, setTutees] = React.useState([]);
 
-  fetchTutees()
-    .then((result) => {
-      setTutees(result);
-      // console.log('courses', courses);
-    })
-    .catch((error) => {
-      if (error.response) {
-        // console.log(error.response.data); // => the response payload
-        alert(error.response.data.message);
-      }
-    });
-
+  useEffect(() => {
+    fetchTutees()
+      .then((result) => {
+        setTutees(result);
+        // console.log('courses', courses);
+      })
+      .catch((error) => {
+        if (error.response) {
+          // console.log(error.response.data); // => the response payload
+          alert(error.response.data.message);
+        }
+      });
+  }, []);
   // console.log(props.courseId.tutees);
   // console.log(props.courseId.tutees.includes('634634aa68907eb5ba09633f'));
+
+  if (props.courseId.tutees.length === 0) {
+    // console.log('hello');
+  }
 
   return (
     <Container maxWidth="xl">
@@ -32,7 +37,7 @@ const Students = (props) => {
           </Typography>
           {!tutees.length ? (
             <CircularProgress />
-          ) : (
+          ) : props.courseId.tutees.length != 0 ? (
             <Grid container alignItems="stretch" spacing={3}>
               {tutees.map(
                 (oneTutee) =>
@@ -43,6 +48,8 @@ const Students = (props) => {
                   )
               )}
             </Grid>
+          ) : (
+            <Typography>No Students Currently Bookmarked</Typography>
           )}
         </Grid>
       </Grid>

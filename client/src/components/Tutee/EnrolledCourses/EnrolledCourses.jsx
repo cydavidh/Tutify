@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import EnrolledCourse from './EnrolledCourse/EnrolledCourse';
 import { fetchTutorCourses } from '../../../api/index';
 import { Grid, Typography, CircularProgress } from '@mui/material';
@@ -7,9 +7,14 @@ function EnrolledCourses(props) {
   let user = JSON.parse(localStorage.getItem('user'));
   const [courses, setCourses] = React.useState([]);
 
-  fetchTutorCourses().then((result) => {
-    setCourses(result);
-  });
+  useEffect(() => {
+    fetchTutorCourses().then((result) => {
+      setCourses(result);
+    });
+  }, []);
+
+  // useEffect(() => {
+  // }, []);
 
   return !courses.length ? (
     <CircularProgress />

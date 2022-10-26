@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const tuteeSchema = mongoose.Schema({
   name: { type: String, required: true },
@@ -14,5 +14,5 @@ const tuteeSchema = mongoose.Schema({
   },
 });
 
-const Tutee = mongoose.model("Tutee", tuteeSchema);
+const Tutee = mongoose.model('Tutee', tuteeSchema);
 export default Tutee;

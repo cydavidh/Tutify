@@ -3,8 +3,22 @@ import FormTeach from '../Form/FormTeach';
 import Courses from '../Courses/Courses';
 import { Container, AppBar, Typography, Grow, Grid } from '@mui/material';
 import Students from '../Students/Students';
+import { fetchTutorCourses } from '../../../api/index';
 
 function Teaching(props) {
+  const [forceRender, setForceRender] = useState(0);
+  console.log('render', forceRender);
+  const [courses, setCourses] = React.useState([]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      fetchTutorCourses().then((result) => {
+        setCourses(result);
+      });
+    }, 1000);
+    console.log('useeffect ran');
+  }, [forceRender]);
+
   return (
     <div>
       {props.viewCourses && (
@@ -14,11 +28,12 @@ function Teaching(props) {
               <Typography sx={{ marginTop: 9, marginBottom: 3, minWidth: 200 }} variant="h4">
                 Your Courses
               </Typography>
-              <Courses studentFunction={props.studentFunction} />
+              {console.log('before child', courses)}
+              <Courses setForceRender={setForceRender} courses={courses} studentFunction={props.studentFunction} />
               {/* <Courses setCurrentId={setCurrentId} /> */}
             </Grid>
             <Grid item xs={12} sm={4}>
-              <FormTeach />
+              <FormTeach forceRender={forceRender} setForceRender={setForceRender} />
               {/* <FormTeach currentId={currentId} setCurrentId={setCurrentId} /> */}
             </Grid>
           </Grid>

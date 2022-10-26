@@ -1,29 +1,26 @@
 import React, { useEffect } from 'react';
 import Course from './Course/Course';
-import { fetchTutorCourses } from '../../../api/index';
 import { Grid, Typography, CircularProgress } from '@mui/material';
-import Axios from 'axios';
 
 function Courses(props) {
   let user = JSON.parse(localStorage.getItem('user'));
-  const [courses, setCourses] = React.useState([]);
-
-  fetchTutorCourses().then((result) => {
-    setCourses(result);
-    // console.log("courses", courses);
-  });
-
+  // const [courses, setCourses] = React.useState([]);
+  // useEffect(() => {}, []);
+  // fetchTutorCourses().then((result) => {
+  //   setCourses(result);
+  //   // console.log("courses", courses);
+  // });
   //need to add useEffect clean up to abort the axios fetch
 
-  return !courses.length ? (
+  return !props.courses.length ? (
     <CircularProgress />
   ) : (
     <Grid container alignItems="stretch" spacing={3}>
-      {courses.map(
+      {props.courses.map(
         (singleCourse) =>
           user.result._id === singleCourse?.tutor && (
             <Grid key={singleCourse._id} item xs={12} sm={6} md={6}>
-              <Course studentFunction={props.studentFunction} course={singleCourse} />
+              <Course setForceRender={props.setForceRender} studentFunction={props.studentFunction} course={singleCourse} />
             </Grid>
           )
       )}

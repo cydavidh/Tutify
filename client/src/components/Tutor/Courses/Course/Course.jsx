@@ -10,6 +10,7 @@ function Course(props) {
         <Typography>{props.course.type}</Typography>
         <Typography>{props.course.price} Baht/Hour</Typography>
         <Typography>{props.course.availability}</Typography>
+        <Typography>{props.course.details}</Typography>
       </CardContent>
       <CardActions>
         {/* <Button size="small" sx={{ textDecoration: 'line-through' }}>Students</Button>
@@ -27,6 +28,7 @@ function Course(props) {
           size="small"
           onClick={() => {
             deleteCourse(props.course._id);
+            props.setForceRender((prev) => prev + 1);
           }}
         >
           Delete

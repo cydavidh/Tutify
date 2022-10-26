@@ -1,14 +1,16 @@
-import React from "react";
-import AvailableCourse from "./AvailableCourse/AvailableCourse";
-import { fetchTutorCourses } from "../../../api/index";
-import { Grid, Typography, CircularProgress } from "@mui/material";
+import React, { useEffect } from 'react';
+import AvailableCourse from './AvailableCourse/AvailableCourse';
+import { fetchTutorCourses } from '../../../api/index';
+import { Grid, Typography, CircularProgress } from '@mui/material';
 
 function AvailableCourses() {
   const [courses, setCourses] = React.useState([]);
 
-  fetchTutorCourses().then((result) => {
-    setCourses(result);
-  });
+  useEffect(() => {
+    fetchTutorCourses().then((result) => {
+      setCourses(result);
+    });
+  }, []);
 
   return !courses.length ? (
     <CircularProgress />

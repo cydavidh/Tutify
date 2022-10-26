@@ -4,6 +4,9 @@ const courseSchema = new mongoose.Schema({
   course: {
     type: String,
   },
+  details: {
+    type: String,
+  },
   availability: {
     type: String,
   },

@@ -12,13 +12,18 @@ import SchoolIcon from '@mui/icons-material/School';
 import logo from '../../assets/logo.png';
 import ChatIcon from '@mui/icons-material/Chat';
 import Requested from './Tabs/Requested';
-import StudentsTab from './Tabs/StudentsTab';
+// import StudentsTab from './Tabs/StudentsTab';
 import Teaching from './Tabs/Teaching';
 import ChatTab from './Tabs/ChatTab';
+import Profile from './Tabs/Profile';
 
 const drawerWidth = 240;
 
 export default function TutorPage() {
+  useEffect(() => {
+    document.title = 'Tutor';
+  }, []);
+
   const theme = useTheme();
   const navigate = useNavigate();
   const [component, setcomponent] = useState('');
@@ -105,12 +110,12 @@ export default function TutorPage() {
             <ListItemText primary="Requested" />
           </ListItemButton>
 
-          {/* <ListItemButton onClick={() => setcomponent('students')}>
+          <ListItemButton onClick={() => setcomponent('profile')}>
             <ListItemIcon>
               <LibraryBooksIcon />
             </ListItemIcon>
-            <ListItemText primary="Students" />
-          </ListItemButton> */}
+            <ListItemText primary="Profile" />
+          </ListItemButton>
 
           <ListItemButton onClick={() => setcomponent('chat')}>
             <ListItemIcon>
@@ -136,8 +141,8 @@ export default function TutorPage() {
           <Teaching redirectToChat={redirectToChat} courseId={courseId} viewCourses={viewCourses} studentFunction={studentFunction} viewChange={viewChange} />
         ) : component == 'requested' ? (
           <Requested />
-        ) : component == 'students' ? (
-          <StudentsTab />
+        ) : component == 'profile' ? (
+          <Profile />
         ) : (
           <ChatTab chatUsername={username} />
         )}

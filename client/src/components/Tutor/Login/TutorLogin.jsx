@@ -53,6 +53,7 @@ export default function TutorLogin() {
         .then((response) => {
           localStorage.setItem('token', response.data.token);
           localStorage.setItem('user', JSON.stringify(response.data));
+          localStorage.setItem('actualuser', JSON.stringify(response.data.user));
           //if you want ot get name email password or id or token somewhere.
           //just do const user = localStorage.getItem("user");
           //user.result.token, user.result.name...etc
@@ -86,7 +87,10 @@ export default function TutorLogin() {
         .then(function (response) {
           localStorage.setItem('token', response.data.token);
           localStorage.setItem('user', JSON.stringify(response.data));
-          // console.log(localStorage.getItem("user"));
+          localStorage.setItem('actualuser', JSON.stringify(response.data.result));
+
+          // console.log(localStorage.getItem('actualuser'));
+          // console.log(localStorage.getItem('user'));
           // alert(localStorage.getItem("user"));
           localStorage.setItem('role', 'tutor');
           navigate('/tutor/dashboard');

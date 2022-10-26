@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card, CardContent, Button, CardActions, Typography } from '@mui/material';
+import { apply } from '../../../../api/index.js';
 
 function RequestCourse({ course }) {
   return (
@@ -17,8 +18,10 @@ function RequestCourse({ course }) {
         {/* <Button size="small" sx={{ textDecoration: 'line-through' }}>
           Chat
         </Button> */}
-        <Button size="small">Chat</Button>
-        {/* <Button size="small">Edit</Button> */}
+        <Button size="small" onClick={apply(course._id)}>
+          Chat
+        </Button>
+        <Button size="small">Apply</Button>
         {/* <Button size="small" sx={{ textDecoration: 'line-through' }}>
           Tutee Detail
         </Button> */}

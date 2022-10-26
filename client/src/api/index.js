@@ -19,10 +19,17 @@ export async function fetchTutees() {
   const response = await tutorAPI.get('/tutees');
   return response.data;
 }
+// export async function getTutor() {
+//   const response = await tutorAPI.get('/tutor/${id}');
+//   return response.data;
+// }
+export const getTutor = (id) => tutorAPI.get(`/tutor/${id}`);
 export const createCourse = (newCourse) => tutorAPI.post('/teaching', newCourse);
 export const logIn = (formData) => tutorAPI.post('/login', formData);
 export const signUp = (formData) => tutorAPI.post('/signup', formData);
 export const deleteCourse = (courseid) => tutorAPI.delete(`/delete/${courseid}`);
+export const updateProfile = (userid, profile) => tutorAPI.patch(`/profile/update/${userid}`, profile); //patch(`/posts/${id}`, updatedPost);
+export const apply = (courseid) => tutorAPI.patch(`/apply/${courseid}`);
 
 //tutee
 // const tuteeAPI = Axios.create({ baseURL: 'https://tutify-2.herokuapp.com/tutee' });

@@ -15,7 +15,7 @@ function RequestCourse(props) {
         {/* <Button size="small" sx={{ textDecoration: 'line-through' }}>
           Tutors
         </Button> */}
-        {/* <Button size="small">Tutors</Button> */}
+        <Button size="small">Tutors</Button>
         {/* <Button size="small">Edit</Button> */}
         <Button
           size="small"

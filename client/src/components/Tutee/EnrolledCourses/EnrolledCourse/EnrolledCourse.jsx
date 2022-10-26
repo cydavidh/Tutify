@@ -43,6 +43,7 @@ function EnrolledCourse(props) {
         <Typography>{props.course.type}</Typography>
         <Typography>{props.course.price} Baht/Hour</Typography>
         <Typography>{props.course.availability}</Typography>
+        <Typography>{props.course.details}</Typography>
       </CardContent>
       <CardActions>
         <Button size="small" onClick={onClickHandler}>

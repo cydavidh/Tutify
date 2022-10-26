@@ -91,7 +91,7 @@ function FormTeach(props) {
 
         <TextField sx={{ m: 1 }} name="availability" variant="outlined" label="Availability(e.g.Monday-Friday, 7pm-9pm)" fullWidth value={courseData.availability} onChange={(e) => setCourseData({ ...courseData, availability: e.target.value })} />
 
-        <TextField sx={{ m: 1 }} name="details" variant="outlined" label="Course Details" multiline rows={3} fullWidth value={courseData.details} onChange={(e) => setCourseData({ ...courseData, details: e.target.value })} />
+        <TextField sx={{ m: 1 }} name="details" variant="outlined" label="Course Details (e.g.Topics)" multiline rows={3} fullWidth value={courseData.details} onChange={(e) => setCourseData({ ...courseData, details: e.target.value })} />
 
         <Button sx={{ m: 1 }} variant="contained" color="blue" size="large" type="submit" fullWidth>
           Submit

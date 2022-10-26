@@ -11,6 +11,7 @@ function AvailableCourse({ course }) {
         <Typography>{course.type}</Typography>
         <Typography>{course.price} Baht/Hour</Typography>
         <Typography>{course.availability}</Typography>
+        <Typography>{course.details}</Typography>
       </CardContent>
       <CardActions>
         <Button

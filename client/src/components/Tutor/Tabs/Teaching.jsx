@@ -7,7 +7,6 @@ import { fetchTutorCourses } from '../../../api/index';
 
 function Teaching(props) {
   const [forceRender, setForceRender] = useState(0);
-  console.log('render', forceRender);
   const [courses, setCourses] = React.useState([]);
 
   useEffect(() => {
@@ -16,7 +15,6 @@ function Teaching(props) {
         setCourses(result);
       });
     }, 1000);
-    console.log('useeffect ran');
   }, [forceRender]);
 
   return (
@@ -28,7 +26,6 @@ function Teaching(props) {
               <Typography sx={{ marginTop: 9, marginBottom: 3, minWidth: 200 }} variant="h4">
                 Your Courses
               </Typography>
-              {console.log('before child', courses)}
               <Courses setForceRender={setForceRender} courses={courses} studentFunction={props.studentFunction} />
               {/* <Courses setCurrentId={setCurrentId} /> */}
             </Grid>

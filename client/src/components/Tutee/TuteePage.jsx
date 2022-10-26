@@ -20,6 +20,10 @@ import Requests from './Tabs/Requests';
 const drawerWidth = 240;
 
 export default function TuteePage() {
+  useEffect(() => {
+    document.title = 'Tutee';
+  }, []);
+
   const theme = useTheme();
   const navigate = useNavigate();
   const [component, setcomponent] = useState('');

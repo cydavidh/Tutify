@@ -35,6 +35,10 @@ const courseSchema = new mongoose.Schema({
   tuteeRequestName: {
     type: String,
   },
+  tutors: {
+    type: [String],
+    default: [],
+  },
 });
 
 export const Course = mongoose.model('Course', courseSchema);

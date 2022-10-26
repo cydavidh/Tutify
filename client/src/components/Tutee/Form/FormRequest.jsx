@@ -47,6 +47,8 @@ function FormRequest(props) {
 
         <Autocomplete
           sx={{ m: 1, minWidth: 300 }}
+          autoSelect
+          freeSolo
           disablePortal
           options={allCoursesList}
           renderInput={(params) => <TextField {...params} label="Course" />}

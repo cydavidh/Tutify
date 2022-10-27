@@ -1,4 +1,4 @@
-import { Course } from '../models/course.js';
+import { Course, RequestedCourse } from '../models/course.js';
 import Tutee from '../models/tutee.js';
 import Tutor from '../models/tutor.js';
 import bcrypt from 'bcryptjs';
@@ -122,4 +122,32 @@ export const updateProfile = async (req, res) => {
   await Tutor.findByIdAndUpdate(userid, updatedPost, { new: true });
 
   res.json(updatedPost);
+};
+
+export const apply = async (req, res) => {
+  //get course id
+  const { courseid } = req.params;
+  //get tutee id
+  const token = req.headers.authorization.split(' ')[1];
+  let decodedData;
+  decodedData = jwt.verify(token, process.env.JWT_SECRET);
+  req.userId = decodedData?.id;
+  console.log('hello', req.userId);
+  //add tutee id to course modal
+  // if (!mongoose.Types.ObjectId.isValid(courseid)) return res.status(404).send(`No post with id: ${id}`);
+  const course = await RequestedCourse.findById(courseid);
+  console.log(course);
+  // course.find({ tutees: { $in: [req.userId] } }); //doesn't work, .find returns the whole document with the matching criteria
+
+  course.tutors.push(req.userId);
+  course.save();
+
+  //add course id to tutee modal
+  // const tutee = await TuteeModal.findById(req.userId);
+  // tutee.enrolled.push(courseid);
+  // tutee.save();
+  // console.log(tutee); //now has enrolled course
+  // console.log(course); //now has list of students
+
+  res.status(200);
 };

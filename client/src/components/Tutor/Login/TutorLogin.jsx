@@ -59,6 +59,7 @@ export default function TutorLogin() {
           //user.result.token, user.result.name...etc
 
           localStorage.setItem('role', 'tutor');
+          localStorage.setItem('alerted', 'false');
           // console.log(localStorage.getItem("user"));
           // console.log(localStorage.getItem("token"));
           let user = JSON.parse(localStorage.getItem('user'));

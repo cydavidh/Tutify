@@ -19,10 +19,6 @@ export async function fetchTutees() {
   const response = await tutorAPI.get('/tutees');
   return response.data;
 }
-// export async function getTutor() {
-//   const response = await tutorAPI.get('/tutor/${id}');
-//   return response.data;
-// }
 export const getTutor = (id) => tutorAPI.get(`/tutor/${id}`);
 export const createCourse = (newCourse) => tutorAPI.post('/teaching', newCourse);
 export const logIn = (formData) => tutorAPI.post('/login', formData);
@@ -45,9 +41,14 @@ export async function fetchRequestedCourses() {
   const response = await tuteeAPI.get('/requests');
   return response.data;
 }
+export async function fetchTutors() {
+  const response = await tuteeAPI.get('/tutors');
+  return response.data;
+}
 export const createRequest = (newCourse) => tuteeAPI.post('/requests', newCourse);
 export const tuteeLogin = (formData) => tuteeAPI.post('/login', formData);
 export const tuteeSignup = (formData) => tuteeAPI.post('/signup', formData);
 export const enroll = (courseid) => tuteeAPI.patch(`/enroll/${courseid}`);
+export const enroll2 = (courseid) => tuteeAPI.patch(`/enroll2/${courseid}`, tuteeid);
 export const withdraw = (courseid) => tuteeAPI.patch(`/withdraw/${courseid}`);
 export const deleteRequest = (courseid) => tuteeAPI.delete(`/delete/${courseid}`);

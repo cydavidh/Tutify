@@ -53,6 +53,7 @@ function EnrolledCourse(props) {
           size="small"
           onClick={() => {
             withdraw(props.course._id);
+            props.setForceRender((prev) => prev + 1);
           }}
         >
           Remove

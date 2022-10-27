@@ -31,7 +31,7 @@ function RequestCourses(props) {
         (singleCourse) =>
           user.result._id === singleCourse?.tuteeRequestId && (
             <Grid key={singleCourse._id} item xs={12} sm={6} md={6}>
-              <RequestCourse setForceRender={props.setForceRender} course={singleCourse} />
+              <RequestCourse setForceRender={props.setForceRender} course={singleCourse} showTutorsAndSetCourseObj={props.showTutorsAndSetCourseObj} />
             </Grid>
           )
       )}

@@ -20,7 +20,7 @@ function AvailableCourse({ course }) {
             enroll(course._id);
           }}
         >
-          Bookmark
+          Attend
         </Button>
         {/* <Button size="small">Bookmark</Button> */}
         {/* <Button size="small" sx={{ textDecoration: 'line-through' }}> */}

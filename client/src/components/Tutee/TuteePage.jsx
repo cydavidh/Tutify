@@ -20,8 +20,14 @@ import Requests from './Tabs/Requests';
 const drawerWidth = 240;
 
 export default function TuteePage() {
+  let alerted = localStorage.getItem('alerted');
+
   useEffect(() => {
     document.title = 'Tutee';
+    if (alerted === 'false') {
+      alert('Welcome to Tutify! Start your 1on1 tutorship now!');
+      localStorage.setItem('alerted', 'true');
+    }
   }, []);
 
   const theme = useTheme();
@@ -40,6 +46,23 @@ export default function TuteePage() {
 
   function chatChange(id) {
     setUsername(id);
+  }
+
+  //for tutors subpage in requested
+  const [requestsView, setView] = React.useState(true);
+  const setRequestsView = () => {
+    setView(true);
+  };
+  const [courseObj, setCourseObj] = useState({});
+  const showTutorsAndSetCourseObj = (courseid) => {
+    setView(false);
+    setCourseObj(courseid);
+  };
+
+  //for clicking on drawer: requests
+  function setAndView() {
+    setcomponent('requests');
+    setView(true);
   }
 
   return (
@@ -83,7 +106,7 @@ export default function TuteePage() {
             <ListItemText primary="Available" />
           </ListItemButton>
 
-          <ListItemButton onClick={() => setcomponent('requests')}>
+          <ListItemButton onClick={setAndView}>
             <ListItemIcon>
               <LibraryBooksIcon />
             </ListItemIcon>
@@ -110,7 +133,15 @@ export default function TuteePage() {
 
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         {/* <DrawerHeader /> */}
-        {component == '' || component == 'dashboard' ? <Dashboard chatChange={chatChange} /> : component == 'available' ? <Available /> : component == 'requests' ? <Requests /> : <ChatTab chatUsername={username} />}
+        {component == '' || component == 'dashboard' ? (
+          <Dashboard chatChange={chatChange} />
+        ) : component == 'available' ? (
+          <Available />
+        ) : component == 'requests' ? (
+          <Requests requestsView={requestsView} setRequestsView={setRequestsView} courseObj={courseObj} showTutorsAndSetCourseObj={showTutorsAndSetCourseObj} />
+        ) : (
+          <ChatTab chatUsername={username} />
+        )}
       </Box>
     </Box>
   );

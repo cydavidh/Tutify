@@ -20,8 +20,13 @@ import Profile from './Tabs/Profile';
 const drawerWidth = 240;
 
 export default function TutorPage() {
+  let alerted = localStorage.getItem('alerted');
   useEffect(() => {
     document.title = 'Tutor';
+    if (alerted === 'false') {
+      alert('Welcome to Tutify! Start your 1on1 tutorship now!');
+      localStorage.setItem('alerted', 'true');
+    }
   }, []);
 
   const theme = useTheme();

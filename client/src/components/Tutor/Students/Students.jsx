@@ -22,10 +22,12 @@ const Students = (props) => {
   // console.log(props.courseId.tutees);
   // console.log(props.courseId.tutees.includes('634634aa68907eb5ba09633f'));
 
-  if (props.courseId.tutees.length === 0) {
-    // console.log('hello');
-  }
-
+  // if (props.courseId.tutees.length === 0) {
+  //   // console.log('hello');
+  // }
+  // console.log(props.courseId.tutees.length);
+  console.log(typeof tutees);
+  // tutees.map((e) => console.log(e));
   return (
     <Container maxWidth="xl">
       {/* <SearchBar value={textFieldValue} onChange={(newValue) => setTextFieldValue(newValue)} onSearch={handleSearch} /> */}

@@ -22,7 +22,7 @@ function Copyright(props) {
 const theme = createTheme();
 const initialState = { firstName: '', lastName: '', email: '', password: '', confirmPassword: '' };
 
-export default function TuteeLogin() {
+export default function TutorLogin() {
   //switch role
   const navigate = useNavigate();
   const [checked, setChecked] = React.useState(true);
@@ -53,12 +53,13 @@ export default function TuteeLogin() {
         .then((response) => {
           localStorage.setItem('token', response.data.token);
           localStorage.setItem('user', JSON.stringify(response.data));
+          localStorage.setItem('actualuser', JSON.stringify(response.data.user));
           //if you want ot get name email password or id or token somewhere.
           //just do const user = localStorage.getItem("user");
           //user.result.token, user.result.name...etc
-          var names = [];
-          localStorage.setItem('names', JSON.stringify(names));
+
           localStorage.setItem('role', 'tutee');
+          localStorage.setItem('alerted', 'false');
           // console.log(localStorage.getItem("user"));
           // console.log(localStorage.getItem("token"));
           let user = JSON.parse(localStorage.getItem('user'));
@@ -87,11 +88,12 @@ export default function TuteeLogin() {
         .then(function (response) {
           localStorage.setItem('token', response.data.token);
           localStorage.setItem('user', JSON.stringify(response.data));
-          // console.log(localStorage.getItem("user"));
-          var names = [];
-          localStorage.setItem('names', JSON.stringify(names));
+          localStorage.setItem('actualuser', JSON.stringify(response.data.result));
+
+          // console.log(localStorage.getItem('actualuser'));
+          // console.log(localStorage.getItem('user'));
           // alert(localStorage.getItem("user"));
-          localStorage.setItem('role', 'tutee');
+          localStorage.setItem('role', 'tutor');
           navigate('/tutee/dashboard');
         })
         .catch((error) => {

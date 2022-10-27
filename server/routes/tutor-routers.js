@@ -1,5 +1,5 @@
 import express from 'express';
-import { getTutor, updateProfile, getTeaching, getTutees, createCourse, logIn, signUp, deleteCourse } from '../routes-controllers/tutor-controller.js';
+import { apply, getTutor, updateProfile, getTeaching, getTutees, createCourse, logIn, signUp, deleteCourse } from '../routes-controllers/tutor-controller.js';
 
 const router = express.Router();
 
@@ -11,5 +11,6 @@ router.post('/signup', signUp);
 router.delete('/delete/:courseid', deleteCourse);
 router.patch('/profile/update/:userid', updateProfile);
 router.get('/tutor/:id', getTutor);
+router.patch('/apply/:courseid', apply);
 
 export default router;

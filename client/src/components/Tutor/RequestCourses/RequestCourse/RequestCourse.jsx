@@ -1,20 +1,33 @@
 import React from 'react';
 import { Card, CardContent, Button, CardActions, Typography } from '@mui/material';
-import { apply } from '../../../../api/index.js';
+import { apply, getTutor } from '../../../../api/index.js';
 import { useEffect } from 'react';
 
 function RequestCourse({ course }) {
   let user = JSON.parse(localStorage.getItem('user'));
   const [applied, setApplied] = React.useState(false);
+  const [tutor, setTutor] = React.useState({});
+
+  useEffect(() => {
+    getTutor(user.result._id).then((result) => {
+      // console.log(typeof result.data);
+      setTutor((prev) => ({ ...prev, ...result.data }));
+    });
+  }, []);
 
   useEffect(() => {
     if (course.tutors.includes(user.result._id)) {
       setApplied(true);
     }
   }, []);
+
   const onClickHandler = () => {
-    apply(course._id);
-    setApplied(true);
+    if (tutor.aboutMe === undefined) {
+      alert('Please fill in your profile before applying');
+    } else {
+      apply(course._id);
+      setApplied(true);
+    }
   };
 
   return (

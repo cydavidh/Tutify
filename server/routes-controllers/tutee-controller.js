@@ -64,7 +64,7 @@ export const signup = async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(password, 12);
 
-    const result = await Tutor.create({
+    const result = await Tutee.create({
       email,
       password: hashedPassword,
       name: `${firstName} ${lastName}`,

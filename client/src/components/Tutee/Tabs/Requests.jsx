@@ -41,7 +41,7 @@ const Requests = (props) => {
           </Grid>
         </Container>
       )}
-      {!props.requestsView && <Tutors setRequestsView={props.setRequestsView} courseObj={props.courseObj} />}
+      {!props.requestsView && <Tutors setChat={props.setChat} chatChange={props.chatChange} setRequestsView={props.setRequestsView} courseObj={props.courseObj} />}
     </div>
   );
 };

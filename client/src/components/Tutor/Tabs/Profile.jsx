@@ -85,7 +85,7 @@ const Profile = () => {
               <Typography>GPA</Typography>
             </Grid>
           </Grid>
-          <TextField sx={{ m: 1, maxWidth: 200 }} fullWidth label="Year" value={profile.year} onChange={(e) => setProfile({ ...profile, year: e.target.value })} disabled={disabled} />
+          <TextField sx={{ m: 1, maxWidth: 250 }} fullWidth label="Year at University (1-4)" value={profile.year} onChange={(e) => setProfile({ ...profile, year: e.target.value })} disabled={disabled} />
           <TextField sx={{ m: 1 }} multiline rows={5} fullWidth label="About me" value={profile.aboutMe} onChange={(e) => setProfile({ ...profile, aboutMe: e.target.value })} disabled={disabled} />
 
           {disabled ? (

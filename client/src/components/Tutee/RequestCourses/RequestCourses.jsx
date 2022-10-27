@@ -24,7 +24,7 @@ function RequestCourses(props) {
   // console.log("userid", user.result._id)
   // console.log(courses[0].tutee)
   return !props.courses.length ? (
-    <CircularProgress />
+    <CircularProgress sx={{ marginTop: 25, marginLeft: 25 }} />
   ) : (
     <Grid container alignItems="stretch" spacing={3} marginTop={17}>
       {props.courses.map(

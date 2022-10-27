@@ -3,7 +3,7 @@ import RequestCourse from './RequestCourse/RequestCourse';
 import { fetchRequestedCourses } from '../../../api/index';
 import { Grid, Typography, CircularProgress } from '@mui/material';
 
-function RequestCourses() {
+function RequestCourses(props) {
   let user = JSON.parse(localStorage.getItem('user'));
   const [courses, setCourses] = React.useState([]);
 
@@ -27,11 +27,19 @@ function RequestCourses() {
     <CircularProgress />
   ) : (
     <Grid container alignItems="stretch" spacing={3}>
-      {courses.map((singleCourse) => (
-        <Grid key={singleCourse._id} item xs={12} sm={6} md={6}>
-          <RequestCourse course={singleCourse} />
-        </Grid>
-      ))}
+      {courses
+        .filter((val) => {
+          if (props.searchvalue == '') {
+            return val;
+          } else if (val.course.toLowerCase().includes(props.searchvalue.toLowerCase())) {
+            return val;
+          }
+        })
+        .map((singleCourse) => (
+          <Grid key={singleCourse._id} item xs={12} sm={6} md={6}>
+            <RequestCourse course={singleCourse} />
+          </Grid>
+        ))}
     </Grid>
   );
 }

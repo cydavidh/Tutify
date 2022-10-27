@@ -43,7 +43,7 @@ const Tutors = (props) => {
                 (oneTutor) =>
                   props.courseObj.tutors.includes(oneTutor._id) && (
                     <Grid key={oneTutor._id} p={2}>
-                      <Tutor courseObj={props.courseObj} tutor={oneTutor} />
+                      <Tutor setChat={props.setChat} chatChange={props.chatChange} courseObj={props.courseObj} tutor={oneTutor} />
                     </Grid>
                   )
               )}

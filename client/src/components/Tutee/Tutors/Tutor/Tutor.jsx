@@ -20,7 +20,10 @@ const Tutor = (props) => {
     deleteRequest(props.courseObj._id);
     navigate('/');
   };
-
+  const chatOnClick = () => {
+    props.chatChange(props.tutor.name);
+    props.setChat();
+  };
   return (
     <Paper
       elevation={3}
@@ -48,7 +51,9 @@ const Tutor = (props) => {
       </Typography>
 
       <Box display="flex">
-        <Button size="medium">Chat</Button>
+        <Button size="medium" onClick={chatOnClick}>
+          Chat
+        </Button>
         <Button size="medium" onClick={onClickHandler}>
           Confirm
         </Button>

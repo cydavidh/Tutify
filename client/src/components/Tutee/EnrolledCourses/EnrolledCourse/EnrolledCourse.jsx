@@ -31,6 +31,7 @@ function EnrolledCourse(props) {
     storedNames.push(props.course.tutoremail);
     localStorage.setItem('names', JSON.stringify(storedNames));
     // console.log(storedNames);
+    props.setChat();
   }
 
   return (

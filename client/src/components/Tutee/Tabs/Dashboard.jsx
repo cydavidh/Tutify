@@ -21,7 +21,7 @@ function Dashboard(props) {
           <Typography sx={{ marginTop: 9, marginBottom: 3, minWidth: 200 }} variant="h4">
             Attending Courses
           </Typography>
-          <EnrolledCourses setForceRender={setForceRender} courses={courses} chatChange={props.chatChange} />
+          <EnrolledCourses setChat={props.setChat} setForceRender={setForceRender} courses={courses} chatChange={props.chatChange} />
         </Grid>
       </Grid>
     </Container>

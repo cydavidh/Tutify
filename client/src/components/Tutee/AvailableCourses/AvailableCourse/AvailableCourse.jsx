@@ -1,8 +1,10 @@
 import React from 'react';
 import { Card, CardContent, Button, CardActions, Typography } from '@mui/material';
 import { enroll } from '../../../../api/index.js';
+import { useNavigate } from 'react-router-dom';
 
 function AvailableCourse({ course }) {
+  const navigate = useNavigate();
   return (
     <Card sx={{ minWidth: 275 }}>
       <CardContent>
@@ -18,6 +20,8 @@ function AvailableCourse({ course }) {
           size="small"
           onClick={() => {
             enroll(course._id);
+            // navigate('/tutee/dashboard');
+            navigate('/');
           }}
         >
           Attend

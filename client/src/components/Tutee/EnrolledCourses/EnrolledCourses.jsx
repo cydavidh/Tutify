@@ -16,7 +16,7 @@ function EnrolledCourses(props) {
         (singleCourse) =>
           singleCourse?.tutees.includes(user.result._id) && (
             <Grid key={singleCourse._id} item xs={12} sm={6} md={6}>
-              <EnrolledCourse setForceRender={props.setForceRender} chatChange={props.chatChange} course={singleCourse} />
+              <EnrolledCourse setChat={props.setChat} setForceRender={props.setForceRender} chatChange={props.chatChange} course={singleCourse} />
             </Grid>
           )
       )}

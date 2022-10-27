@@ -63,6 +63,8 @@ export default function TutorLogin() {
           // console.log(localStorage.getItem("user"));
           // console.log(localStorage.getItem("token"));
           let user = JSON.parse(localStorage.getItem('user'));
+          var names = [];
+          localStorage.setItem('names', JSON.stringify(names));
 
           axios
             .post(
@@ -89,11 +91,12 @@ export default function TutorLogin() {
           localStorage.setItem('token', response.data.token);
           localStorage.setItem('user', JSON.stringify(response.data));
           localStorage.setItem('actualuser', JSON.stringify(response.data.result));
-
+          var names = [];
+          localStorage.setItem('names', JSON.stringify(names));
           // console.log(localStorage.getItem('actualuser'));
           // console.log(localStorage.getItem('user'));
           // alert(localStorage.getItem("user"));
-          localStorage.setItem('role', 'tutor');
+          localStorage.setItem('role', 'tutee');
           navigate('/tutee/dashboard');
         })
         .catch((error) => {

@@ -65,6 +65,10 @@ export default function TuteePage() {
     setView(true);
   }
 
+  function setChat() {
+    setcomponent('chat');
+  }
+
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
@@ -134,11 +138,11 @@ export default function TuteePage() {
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         {/* <DrawerHeader /> */}
         {component == '' || component == 'dashboard' ? (
-          <Dashboard chatChange={chatChange} />
+          <Dashboard setChat={setChat} chatChange={chatChange} />
         ) : component == 'available' ? (
           <Available />
         ) : component == 'requests' ? (
-          <Requests requestsView={requestsView} setRequestsView={setRequestsView} courseObj={courseObj} showTutorsAndSetCourseObj={showTutorsAndSetCourseObj} />
+          <Requests setChat={setChat} chatChange={chatChange} requestsView={requestsView} setRequestsView={setRequestsView} courseObj={courseObj} showTutorsAndSetCourseObj={showTutorsAndSetCourseObj} />
         ) : (
           <ChatTab chatUsername={username} />
         )}

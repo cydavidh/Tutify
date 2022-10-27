@@ -15,4 +15,4 @@ https://tutify-front.herokuapp.com/
 
 Setup:
 
-- run `npm i && npm start` inside each of the client and server folder to start the developmental server
+- run `npm i && npm start` inside each of the client and server folder to install the dependencies and start the developmental server

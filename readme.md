@@ -11,7 +11,7 @@ You may also signup as a tutor and post subjects you wish to teach.
 
 ## Setup:
 
-- run `npm i && npm start` inside each of the client and server folder to install the dependencies and start the developmental server
+Run `npm i && npm start` inside each of the client and server folder to install the dependencies and start the developmental server.
 
 ## Live Demo
 

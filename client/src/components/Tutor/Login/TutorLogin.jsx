@@ -111,8 +111,11 @@ export default function TutorLogin() {
         <CssBaseline />
         <Box sx={{ marginTop: 8, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <img src={logo} alt="Logo" width="25%" border-radius="50%" />
-          <Typography component="h1" variant="h3" color="#3498DB">
+          <Typography component="h1" variant="h3" color="#3498DB" sx={{ marginBottom: 0, textDecoration: 'underline' }}>
             Au Tutify
+          </Typography>
+          <Typography component="h1" variant="subtitle2" color="#3498DB" sx={{ marginBottom: 3 }}>
+            One to One Tutoring
           </Typography>
           <Stack direction="row" spacing={1} alignItems="center">
             <Typography>Tutor</Typography>

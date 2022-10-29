@@ -21,7 +21,7 @@ function AvailableCourse({ course }) {
           onClick={() => {
             enroll(course._id);
             // navigate('/tutee/dashboard');
-            navigate('/');
+            window.location.reload();
           }}
         >
           Attend

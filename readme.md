@@ -17,4 +17,6 @@ Run `npm i && npm start` inside each of the client and server folder to install 
 
 https://tutify-front.herokuapp.com/
 
+## Collaborator
 
+Made in collaboration with my teammate: https://github.com/phumzxter

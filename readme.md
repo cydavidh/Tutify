@@ -18,7 +18,7 @@ Run `npm i && npm start` inside each of the client and server folder to install 
 
 ## Live Demo
 
-http://tutify-new.us-east-2.elasticbeanstalk.com/
+http://tutify.us-east-2.elasticbeanstalk.com/
 
 P.S. the chat API I used isn't free anymore so the chat module won't work.
 

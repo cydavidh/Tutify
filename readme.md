@@ -16,12 +16,6 @@ You may also signup as a tutor and post subjects you wish to teach.
 
 Run `npm i && npm start` inside each of the client and server folder to install the dependencies and start the developmental server.
 
-## Live Demo
-
-http://tutify-new.us-east-2.elasticbeanstalk.com/
-
-P.S. the chat API I used isn't free anymore so the chat module won't work.
-
 ## Collaborator
 
 Made in collaboration with my teammate: https://github.com/phumzxter

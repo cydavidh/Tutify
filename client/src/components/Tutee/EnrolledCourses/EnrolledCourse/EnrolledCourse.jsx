@@ -2,37 +2,21 @@ import React from 'react';
 import { Card, CardContent, Button, CardActions, Typography } from '@mui/material';
 import { withdraw } from '../../../../api/index.js';
 import emailjs from '@emailjs/browser';
+import { io } from 'socket.io-client';
+import { useNavigate } from 'react-router-dom';
 
+const socket = io('http://localhost:1001');
 function EnrolledCourse(props) {
   emailjs.init('hRz_fkfNSAGvLLvGM');
   let user = JSON.parse(localStorage.getItem('user'));
-  var storedNames = JSON.parse(localStorage.getItem('names'));
-  function onClickHandler() {
-    props.chatChange(props.course.tutorname);
-    // console.log(props.course.tutor);
 
-    var templateParams = {
-      tutor_name: props.course.tutorname,
-      tutee_name: user.result.name,
-      tutor_email: props.course.tutoremail,
-    };
-
-    // console.log(templateParams);
-    if (!storedNames.includes(props.course.tutoremail)) {
-      emailjs.send('service_t2vs5kr', 'contact_form', templateParams).then(
-        function (response) {
-          console.log('SUCCESS!', response.status, response.text);
-        },
-        function (error) {
-          console.log('FAILED...', error);
-        }
-      );
-    }
-    storedNames.push(props.course.tutoremail);
-    localStorage.setItem('names', JSON.stringify(storedNames));
-    // console.log(storedNames);
-    props.setChat();
-  }
+  let tutorId = props.course.tutor;
+  const navigate = useNavigate();
+  const startChat = (tutorId) => {
+    socket.emit('start chat', { tutorId, tuteeId: user.id });
+    props.setChat(tutorId);
+    // ('/chat/${tutorId}'); // Replace 'chat' with the path to your chat tab
+  };
 
   return (
     <Card sx={{ minWidth: 275 }}>
@@ -47,7 +31,7 @@ function EnrolledCourse(props) {
         <Typography>{props.course.details}</Typography>
       </CardContent>
       <CardActions>
-        <Button size="small" onClick={onClickHandler}>
+        <Button size="small" onClick={() => startChat(tutorId)}>
           Chat
         </Button>
         <Button

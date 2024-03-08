@@ -69,9 +69,10 @@ export default function TutorPage() {
   //   setUsername(id);
   // }
   //2 redirect chat
-  function redirectToChat(name) {
+  function redirectToChat(tuteeName) {
     setcomponent('chat');
-    setUsername(name);
+    setUsername(tuteeName);
+    handleRoomChange(null, tuteeName);
   }
 
   return (

@@ -65,8 +65,9 @@ export default function TuteePage() {
     setView(true);
   }
 
-  function setChat() {
+  function setChat(tutorId) {
     setcomponent('chat');
+    console.log('tutorId', tutorId);
   }
 
   return (

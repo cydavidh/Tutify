@@ -14,11 +14,10 @@ You may also signup as a tutor and post subjects you wish to teach.
 - It allows students to sign up as a tutee and find a tutor for any subject they wish.
 - Tutors can also sign up and post the subjects they wish to teach.
 - The project is divided into a client and a server, each with its own dependencies and scripts.
-- The client is built with React and uses libraries such as @mui/material for Material UI components, axios for HTTP requests, and react-router-dom for routing.
-- The server is built with Express and uses libraries such as mongoose for MongoDB object modeling, jsonwebtoken for JWT-based authentication, and bcrypt for password hashing.
-- Real-time communication between the tutee and tutor is facilitated by socket.io.
-- The project uses dotenv for environment variable management.
-- The client and server are both configured to run in development mode with npm start.
+- The client is built with React and uses libraries such as `@mui/material` for Material UI components, `axios` for HTTP requests, and `react-router-dom` for routing.
+- The server is built with Express and uses libraries such as `mongoose` for MongoDB object modeling, `jsonwebtoken` for JWT-based authentication, and `bcrypt` for password hashing.
+- Real-time communication between the tutor and tutee is facilitated by `socket.io`.
+- The project uses `dotenv` for environment variable management.
 
 ## Tech Stack
 <img src="https://i.imgur.com/Qn9k6H1.png" height="250"/>

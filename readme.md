@@ -12,10 +12,6 @@ You may also signup as a tutor and post subjects you wish to teach.
 ## Tech Stack
 <img src="https://i.imgur.com/Qn9k6H1.png" height="250"/>
 
-## Setup:
-
-Run `npm i && npm start` inside each of the client and server folder to install the dependencies and start the developmental server.
-
 ## Collaborator
 
 Made in collaboration with my teammate: https://github.com/phumzxter
